@@ -20,8 +20,8 @@ def get_Update(username):
     now = get_AC_List(username)
     for p in now:
         if p not in current[username]:
-            irc.send(channel[username], username + " solved https://boj.kr/" + str(p))
-            if username == "mhkim4886": twitter.send("#Solved: https://boj.kr/" + str(p))
+            irc.send(channel[username], "#Solved: https://boj.kr/" + str(p))
+            if username == "mhkim4886": twitter.tweet("#Solved: https://boj.kr/" + str(p))
     current[username] = now[:]
 
 server = "moe.uriirc.org"
