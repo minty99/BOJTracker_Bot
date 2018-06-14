@@ -8,6 +8,7 @@ class IRC:
 
     def __init__(self):
         self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.irc.setblocking(False)
 
     def connect(self, server, channel, port, botnick):
         print("Connecting to " + server)
@@ -19,7 +20,7 @@ class IRC:
 
     def join(self, channel):
         self.irc.send(bytes("JOIN " + channel + "\n", "UTF-8"))
-        
+
     def get_text(self):
         try:
             text = self.irc.recv(2048).decode("UTF-8")
