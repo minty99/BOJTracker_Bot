@@ -16,21 +16,21 @@ def get_AC_List(username):
     return ret
 
 def get_Update(username):
+    print("get_Update: Database for " + username)
     now = get_AC_List(username)
-    print("UPDATE: Database for " + username)
     for p in now:
         if p not in current[username]:
             irc.send(channel[username], username + " solved https://boj.kr/" + str(p))
-            if username == "minty99": twitter.send("#Solved: https://boj.kr/" + str(p))
+            if username == "mhkim4886": twitter.send("#Solved: https://boj.kr/" + str(p))
     current[username] = now[:]
 
 server = "moe.uriirc.org"
 port = 16664
 nickname = "minty_BOJbot"
-channel = { "minty99" : "#minty99", "kipa00" : "#kipa00" }
-current = { "minty99" : get_AC_List("mhkim4886"), "kipa00" : get_AC_List("kipa00") }
+channel = { "mhkim4886" : "#minty99", "kipa00" : "#kipa00" }
+current = { "mhkim4886" : get_AC_List("mhkim4886"), "kipa00" : get_AC_List("kipa00") }
 
-users = [ "minty99", "kipa00" ]
+users = [ "mhkim4886", "kipa00" ]
 
 irc = IRC()
 irc.connect(server, "#minty99", port, nickname)
