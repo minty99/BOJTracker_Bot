@@ -20,7 +20,7 @@ def get_Update(username):
     now = get_AC_List(username)
     for p in now:
         if p not in current[username]:
-            irc.send(channel[username], "#Solved: https://boj.kr/" + str(p))
+            irc.send(channel[username], "Solved: https://boj.kr/" + str(p))
             if username == "mhkim4886": twitter.tweet("#Solved: https://boj.kr/" + str(p))
     current[username] = now[:]
 
@@ -40,5 +40,6 @@ twitter = Twitter()
 
 while True:
     for username in users:
+        text = irc.get_text()
         get_Update(username)
         time.sleep(5)
