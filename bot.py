@@ -34,7 +34,8 @@ users = [ "minty99", "kipa00" ]
 
 irc = IRC()
 irc.connect(server, "#minty99", port, nickname)
-irc.connect(server, "#kipa00", port, nickname)
+irc.join("#kipa00")
+
 twitter = Twitter()
 
 while True:

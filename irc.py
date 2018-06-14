@@ -17,6 +17,9 @@ class IRC:
         self.irc.send(bytes("NICK " + botnick + "\n", "UTF-8"))
         self.irc.send(bytes("JOIN " + channel + "\n", "UTF-8"))
 
+    def join(self, channel):
+        self.irc.send(bytes("JOIN " + channel + "\n", "UTF-8"))
+        
     def get_text(self):
         try:
             text = self.irc.recv(2048).decode("UTF-8")
