@@ -28,7 +28,7 @@ class IRC:
                 self.irc.send(bytes('PONG ' + text.split() [1] + '\r\n', "UTF-8"))
             return text
 
-        except ConnectionResetError as e: pass
+        except (ConnectionResetError, socket.timeout) as e: pass
 
     def send(self, chan, msg):
         cmd = "PRIVMSG " + chan + " :" + msg + "\n"
