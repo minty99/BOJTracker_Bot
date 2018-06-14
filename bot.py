@@ -1,6 +1,7 @@
 import requests
 from irc import *
 import time
+from twitter import *
 from bs4 import BeautifulSoup
 
 def get_AC_List(username):
@@ -22,6 +23,7 @@ nickname = "minty_BOJbot"
 current = get_AC_List("mhkim4886")
 irc = IRC()
 irc.connect(server, channel, port, nickname)
+twitter = Twitter()
 
 while True:
     now = get_AC_List("mhkim4886")
@@ -29,5 +31,6 @@ while True:
     for p in now:
         if p not in current:
             irc.send(channel, "minty99 solved https://boj.kr/" + str(p))
+            twitter.send("#Solved: https://boj.kr/" + str(p))
     current = now[:]
     time.sleep(10)
