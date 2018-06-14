@@ -8,7 +8,7 @@ class IRC:
 
     def __init__(self):
         self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.irc.setblocking(False)
+        self.irc.settimeout(2)
 
     def connect(self, server, channel, port, botnick):
         print("Connecting to " + server)
