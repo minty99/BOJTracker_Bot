@@ -42,4 +42,4 @@ while True:
     for username in users:
         text = irc.get_text()
         get_Update(username)
-        time.sleep(5)
+        time.sleep(10)
