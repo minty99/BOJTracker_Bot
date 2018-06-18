@@ -27,19 +27,23 @@ def get_Update(username):
 server = "moe.uriirc.org"
 port = 16664
 nickname = "minty_BOJbot"
-channel = { "mhkim4886" : "#minty99", "kipa00" : "#kipa00" }
-current = { "mhkim4886" : get_AC_List("mhkim4886"), "kipa00" : get_AC_List("kipa00") }
+channel = { "mhkim4886" : "#minty99", "kipa00" : "#kipa00", "zxcvber" : "#zxcvber", "cmchoi9901" : "#Ryul_99" }
+current = { "mhkim4886" : get_AC_List("mhkim4886"), "kipa00" : get_AC_List("kipa00"), "zxcvber": get_AC_List("zxcvber"), "cmchoi9901" : get_AC_List("cmchoi9901") }
 
-users = [ "mhkim4886", "kipa00" ]
+users = [ "mhkim4886", "kipa00", "zxcvber", "cmchoi9901" ]
 
 irc = IRC()
 irc.connect(server, "#minty99", port, nickname)
 irc.join("#kipa00")
+irc.join("#zxcvber")
+irc.join("#Ryul_99")
 
 twitter = Twitter()
 
 while True:
     for username in users:
-        text = irc.get_text()
-        get_Update(username)
-        time.sleep(10)
+        try:
+            text = irc.get_text()
+            get_Update(username)
+            time.sleep(4)
+        except Exception as ex: pass
