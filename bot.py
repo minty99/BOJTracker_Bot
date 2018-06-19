@@ -43,7 +43,8 @@ twitter = Twitter()
 while True:
     for username in users:
         try:
-            text = irc.get_text()
+            for i in range(4):
+                text = irc.get_text()
+                time.sleep(1)
             get_Update(username)
-            time.sleep(4)
         except Exception as ex: pass
