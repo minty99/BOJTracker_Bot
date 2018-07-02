@@ -21,24 +21,31 @@ def get_Update(username):
     for p in now:
         if p not in current[username]:
             irc.send(channel[username], "\x02\x03" + "03" + "Accepted: https://boj.kr/" + str(p))
-            if username == "mhkim4886": twitter.tweet("Accepted! https://boj.kr/" + str(p))
+#           if username == "mhkim4886": twitter.tweet("Accepted! https://boj.kr/" + str(p))
     current[username] = now[:]
 
 server = "moe.uriirc.org"
 port = 16664
 nickname = "minty_BOJbot"
-channel = { "mhkim4886" : "#minty99", "kipa00" : "#kipa00", "zxcvber" : "#zxcvber", "cmchoi9901" : "#Ryul_99" }
-current = { "mhkim4886" : get_AC_List("mhkim4886"), "kipa00" : get_AC_List("kipa00"), "zxcvber": get_AC_List("zxcvber"), "cmchoi9901" : get_AC_List("cmchoi9901") }
-
-users = [ "mhkim4886", "kipa00", "zxcvber", "cmchoi9901" ]
-
+db = open("DB.txt", "r")
+channel = dict()
+current = dict()
+users = list()
 irc = IRC()
-irc.connect(server, "#minty99", port, nickname)
-irc.join("#kipa00")
-irc.join("#zxcvber")
-irc.join("#Ryul_99")
 
-twitter = Twitter()
+while True:
+    line = db.readline().split()
+    if not line: break
+    ID = line[0]
+    chan = line[1]
+    channel[ID] = chan
+    current[ID] = get_AC_List(ID)
+    users += [ ID ]
+    if len(users) == 1: irc.connect(server, chan, port, nickname)
+    else: irc.join(chan)
+db.close()
+
+# twitter = Twitter()
 
 while True:
     for username in users:
