@@ -20,7 +20,7 @@ def get_Update(username):
     now = get_AC_List(username)
     for p in now:
         if p not in current[username]:
-            irc.send(channel[username], "\x02\x03" + "03" + "Accepted: https://boj.kr/" + str(p))
+            irc.send(channel[username], "\x02\x03" + "03" + "Accepted #" + str(len(now)) + ": https://boj.kr/" + str(p))
 #           if username == "mhkim4886": twitter.tweet("Accepted! https://boj.kr/" + str(p))
     current[username] = now[:]
 
