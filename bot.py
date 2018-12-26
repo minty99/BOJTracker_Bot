@@ -21,10 +21,10 @@ def get_Update(username):
     for p in now:
         if p not in current[username]:
             irc.send(channel[username], "\x02\x03" + "03" + "Accepted No. " + str(len(now)) + ": https://boj.kr/" + str(p))
-#           if username == "mhkim4886": twitter.tweet("Accepted! https://boj.kr/" + str(p))
+            if username == "mhkim4886": twitter.tweet("Accepted No. " + str(len(now)) + ": https://boj.kr/" + str(p))
     current[username] = now[:]
 
-server = "moe.uriirc.org"
+server = "laika.uriirc.org"
 port = 16664
 nickname = "minty_BOJbot"
 db = open("DB.txt", "r")
@@ -45,7 +45,7 @@ while True:
     else: irc.join(chan)
 db.close()
 
-# twitter = Twitter()
+twitter = Twitter()
 
 while True:
     for username in users:
